@@ -23,3 +23,27 @@ var rad3 = radio * radio * radio;
 var volumen = (4/3)*pi*rad3;
 console.log("El volumen de la esfera es "+ volumen);
 <!--El volumen de la esfera es 904.7807999999999-->
+
+function tarea (){
+    console.log("Hola " + nombre );
+}
+var nombre = "Jenny";
+tarea();
+
+var nombre = "Jenny";
+function saludar (){
+    if(true){
+        var nombre = "Erick";
+    }
+    console.log(`Hola ${nombre}`);
+}
+saludar();
+
+function saludar10(){
+    let i=0;
+    for(i; i<10; i++){
+        console.log('Hola ${nombre}');
+    }
+
+    console.log('El valor de i es ${i]')
+}
