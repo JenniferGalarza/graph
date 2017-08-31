@@ -30,7 +30,8 @@ function tarea (){
 var nombre = "Jenny";
 tarea();
 
-var nombre = "Jenny";
+
+var nombre = "Alonso";
 function saludar (){
     if(true){
         var nombre = "Erick";
@@ -42,8 +43,8 @@ saludar();
 function saludar10(){
     let i=0;
     for(i; i<10; i++){
-        console.log('Hola ${nombre}');
+        console.log(`Hola ${nombre}`);
     }
 
-    console.log('El valor de i es ${i]')
+    console.log(`El valor de i es ${i}`)
 }
