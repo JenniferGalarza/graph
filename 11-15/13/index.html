@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <h1>Desastres Naturales</h1>
+
+    <p>Todos los años, el mundo se ve sacudido por el paso de fenómenos y eventos de origen natural cuyos efectos trastocan la vida cotidiana de los seres humanos. Huracanes, tornados, tormentas eléctricas, inundaciones, erupciones volcánicas, incendios forestales, avalanchas y muchos más suceden con cierta frecuencia y son comunes en todas las regiones geográficas.</p>
+    
+    <img src="http://d31mb4p5oryik3.cloudfront.net/wp-content/uploads/2014/12/desastres_naturales_700.jpg" class="align-left slide-in">
+    
+    <p>Se les llama desastres naturales, y la Agencia Europea de Medio Ambiente (EEA) los define como cambios violentos, súbitos y destructivos en el medio ambiente cuya causa no es la actividad humana, sino los fenómenos naturales.</p>
+    <p>De acuerdo con esto, un desastre natural es el resultado de un proceso que ocurre normalmente en la naturaleza, pero que al contacto con la civilización humana provoca efectos adversos y a menudo demoledores que una simple lluvia o la exhalación de un volcán no ocasionan. Sin humanos, una inundación u ola de calor no constituye un desastre natural.</p>
+    
+    <img src="http://static.vix.com/es/sites/default/files/styles/large/public/btg/curiosidades.batanga.com/files/Conoces-todos-los-tipos-de-desastres-naturales-8.jpg?itok=Ytk3KcuG" class="align-left slide-in">
+    
+    <p>Los desastres naturales tienen un poder que sobrepasa a la humanidad y suelen desencadenar problemas más graves y duraderos.</p>
+    <p>A lo largo de la historia varios pueblos han sufrido el embate de un evento particularmente fuerte y se han visto seriamente amenazados. Uno de los más conocidos ocurrió en el año 79 d. C. cuando el volcán Vesubio hizo erupción y las ciudades de Pompeya y Herculano y demás sitios aledaños quedaron literalmente sepultados bajo toneladas de ceniza, roca fundida, piedra pómez y material expulsado, hecho que causó la muerte de los habitantes y el final eterno de las ciudades.</p>
+    <p>Los efectos de un desastre natural pueden ser ligeros o de proporciones dramáticas, como en el caso de Pompeya. Pueden causar la muerte de los seres vivos, daños materiales, pérdidas económicas, daño a la belleza natural y pueden constituir una vía de propagación de enfermedades.</p>
+
+    <img src="http://www.animalpolitico.com/wp-content/uploads/2012/08/huracan-bbc-960x500.jpg" class="align-left slide-in">
+    
+
+
+
+  </div>
+
+  <script>
+    function debounce(func, wait = 20, immediate = true) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    };
+    const sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide() {
+      sliderImages.forEach(sliderImage => {
+        // half way through the image
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        // bottom of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        if (isHalfShown && isNotScrolledPast) {
+          sliderImage.classList.add('active');
+        } else {
+          sliderImage.classList.remove('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', debounce(checkSlide));
+  </script>
+
+  <style>
+    html {
+      box-sizing: border-box;
+      background: blueviolet;
+      font-family:'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    body {
+      margin: 0;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .site-wrap {
+      max-width: 700px;
+      margin: 100px auto;
+      background: blueviolet;
+      padding:40px;
+      text-align: justify;
+    }
+    .align-left {
+      float:left;
+      margin-right:20px;
+    }
+    .align-right {
+      float:right;
+      margin-left:20px;
+    }
+    .slide-in {
+      opacity:0;
+      transition:all .5s;
+    }
+    .align-left.slide-in {
+      transform:translateX(-30%) scale(0.95);
+    }
+    .align-right.slide-in {
+      transform:translateX(30%) scale(0.95);
+    }
+    .slide-in.active {
+      opacity:1;
+      transform:translateX(0%) scale(1);
+    }
+  </style>
+
+</body>
+</html>
