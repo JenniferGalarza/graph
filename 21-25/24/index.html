@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>El ultimo día fue ayer</h1>
+  </header>
+
+  <nav id="main">
+    <ul>
+      <li class="logo"><a href="#">Perdido.</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Acerca de..</a></li>
+      <li><a href="#">Imagenes</a></li>
+      <li><a href="#">Ubicacion</a></li>
+      <li><a href="#">Mapa</a></li>
+    </ul>
+  </nav>
+
+  <div class="site-wrap">
+    <p>El celular vibró en el velador de su habitación. Elisa tomó de forma apresurada el móvil, igual que cada vez que escuchaba ese pitido. Desbloqueó con su huella digital e ingresó a la aplicación de mensajería que la mantenía en vilo todo el día. 
+       Debía despedirse de él, lo sabía, pero su corazón y mente de cierta forma la detenían. Debía tomar una decisión y tratar de soportar las consecuencias que eso conllevaba, independiente de si fueran buenas o malas. Intentaba hacerse la valiente, 
+       luchar contra sus sentimientos para cumplir con lo que se proponía; lo mejor en ese momento.</p>
+       <img src="http://www.fondosdinversion.com/wp-content/uploads/2015/04/iphone-37856_1280.png"widht="300" height="200"  class="align-left slide-in">
+    <p>La razón del aviso de su celular era él, inevitablemente, y el momento había llegado.</p>
+    <p>Decir adiós no era fácil, aunque fuera por esa plataforma. Aún quedaban tantas cosas por hacer, tanto por hablar, tanto por reír, tanto por sentir; limitarse a hablar sólo por aquella página que frecuentaban era algo decepcionante.</p>
+    <img src="https://www.soycarmin.com/__export/1489257097359/sites/debate/img/2017/03/11/tumblr_olich1mrza1tj5l5ao1_.jpg_296026913.jpg" widht="300" height="200" class="align-left slide-in">
+    <p>Elisa tenía claro lo que sentía, pero qué sentía él, no lo sabía a ciencia exacta. La amistad era lo principal, lo primordial en la relación que llevaban, pero lo confuso era saber qué otros sentimientos estaban apareciendo.</p>
+    
+    <p>Un “te quiero” se resbaló por las redes inalámbricas, cruzando las naciones, 7084 kilómetros. Un te quiero correspondido ¿a qué nivel? No lo sabía. ¿En qué sentido? En muchos o en pocos. Sin embargo, esas palabras englobaban mucho y ella 
+        no podía evitar repetirlo por todas las veces en que quiso decirlas y el miedo la detenía.</p>
+        <img src="https://image.freepik.com/foto-gratis/mujer-negativa-dolor-triste-triste_1150-1590.jpg" class="align-right slide-in">
+    <p>El último día fue ayer, cuando con dolor terminaron esa etapa. No obstante, los sentimientos se conservan y ella espera cada día intercambiar un mensaje con él. Ser un “nosotros” por un segundo. </p>
+    <img src="http://cdne.diariocorreo.pe/thumbs/uploads/articles/images/el-ultimo-dia-de-junio-tuvo-un-png_604x0.jpg" class="align-right slide-in">
+    </div>
+
+  <script>
+    // Not a ton of code, but hard to
+    const nav = document.querySelector('#main');
+    let topOfNav = nav.offsetTop;
+    function fixNav() {
+      if(window.scrollY >= topOfNav) {
+        document.body.style.paddingTop = nav.offsetHeight + 'px';
+        document.body.classList.add('fixed-nav');
+      } else {
+        document.body.classList.remove('fixed-nav');
+        document.body.style.paddingTop = 0;
+      }
+    }
+    window.addEventListener('scroll', fixNav);
+  </script>
+
+
+</body>
+</html>

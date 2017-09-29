@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Follow Along Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Estatus</a></li>
+        <li><a href="">Tweets</a></li>
+        <li><a href="">Historia</a></li>
+        <li><a href="">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+        <p> El 12 de enero de 1916 toda la <a href="">familia</a> Bonaparte fue desterrada de Francia </p>
+        <p> por una ley del <a href="">Gobierno</a> francés. Esta familia había <a href="">encarnado</a> el liderazgo </p>
+        <p> de un <a href="">movimiento</a> político en Francia, denominado el <a href="">bonapartismo,</a> difícil </p>
+        <p> de clasificar en los términos clásicos de izquierda y derecha. Dicho <a href="">movimiento,</a> </p>
+        <p> de innegable contenido autoritario, cesarista, <a href="">ultra-nacionalista</a> y militarista, </p>
+        <p> respondió a los ideales liberales nacidos de la <a href="">Revolución</a> de 1789, y de hecho, </p>
+        <p> la <a href="">«leyenda napoleónica»</a> formó parte de la cultura <a href="">revolucionaria</a> de los liberales </p>
+        <p> <a href="">románticos</a> que lucharon contra Luis XVIII, Carlos X y Luis Felipe de Orléans.</p>
+        </div>
+
+<script>
+  const triggers = document.querySelectorAll('a');
+  const highlight = document.createElement('span');
+  highlight.classList.add('highlight');
+  document.body.appendChild(highlight);
+  function highlightLink() {
+    const linkCoords = this.getBoundingClientRect();
+    console.log(linkCoords);
+    const coords = {
+      width: linkCoords.width,
+      height: linkCoords.height,
+      top: linkCoords.top + window.scrollY,
+      left: linkCoords.left + window.scrollX
+    };
+    highlight.style.width = `${coords.width}px`;
+    highlight.style.height = `${coords.height}px`;
+    highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+  }
+  triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+</script>
+</body>
+</html>
+
+© 2017 GitHub, Inc.
