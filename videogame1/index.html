@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <canvas id = "myCanvas" width ="480" height="320"></canvas>
+    <canvas id = "myCanvas" width ="960" height="640"></canvas>
     <script> /* aqui arriba le damos el tamaño del canvas*/
 
         /*var canvas = document.getElementById("myCanvas");
@@ -55,8 +55,8 @@
     var paddleX = (canvas.width-paddleWidth)/2;
     var rightPressed = false;
     var leftPressed = false;
-    var brickRowCount = 15; /* numero de las filas de ladrillos*/
-    var brickColumnCount = 7;/* numero de las columnas de ladrillos*/
+    var brickRowCount = 31; /* numero de las filas de ladrillos*/
+    var brickColumnCount = 14;/* numero de las columnas de ladrillos*/
     var brickWidth = 20; /*Ancho del ladrillo*/
     var brickHeight = 20; /*Largo del ladrillo*/
     var brickPadding = 10; /* hueco entre los ladrillos para que no se toquen*/
@@ -112,7 +112,7 @@
                         b.status = 0;
                         score++; /*sumar punto cada vez que se rompe un ladrillo*/
                         if(score == brickRowCount*brickColumnCount) {
-                            alert("YOU WIN, CONGRATS!");
+                            alert("Has ganado, FELICIDADES!!");
                             document.location.reload();/*vuelve a cargar la página y el juego empieza de nuevo, 
                                 una vez se hace clic sobre el botón del alert()*/
                         }
@@ -214,6 +214,18 @@
     }
 
     draw();
+
+
+   
     </script>
+    /*
+    agregar audio
+    controls : muestra los controles estándar de HTML5 para audio en una página web.
+    autoplay : hace que el audio se reproduzca automáticamente.
+    loop : hace que el audio se repita automáticamente.*/
+<audio src="Questing.wav" controls autoplay loop>
+    <p>Tu navegador no implementa el elemento audio</p>
+    </audio>
+   
     </body>
     </html>
