@@ -53,26 +53,29 @@
         var paddleX = (canvas.width-paddleWidth)/2;
         var rightPressed = false;
         var leftPressed = false;
-        var brickRowCount = 3; /* cuenta las filas y las columnas*/
-        var brickColumnCount = 5;/* cuenta las filas y las columnas*/
-        var brickWidth = 75;
-        var brickHeight = 20;
-        var brickPadding = 10;
-        var brickOffsetTop = 30;
-        var brickOffsetLeft = 30;
+        var brickRowCount = 3; /* numero de las filas de ladrillos*/
+        var brickColumnCount = 5;/* numero de las columnas de ladrillos*/
+        var brickWidth = 75; /*Ancho del ladrillo*/
+        var brickHeight = 20; /*Largo del ladrillo*/
+        var brickPadding = 10; /* hueco entre los ladrillos para que no se toquen*/
+        var brickOffsetTop = 30; /*Margen superior para que no se dibujen tocando los bordes*/
+        var brickOffsetLeft = 30;/*Margen izquierdo para que no se dibujen tocando los bordes*/
+        var score = 0; /*variable para guardar el contador*/
 
         var bricks = []; /*bricks es un arreglo y se va a convertir en una matriz de indice 2, voy a tener columas y filas*/
         for (c = 0; c < brickColumnCount; c++ ){ /*recorre las columas de las filas para saber cuantos bricks hay*/
             bricks[c] = [];
             for(r=0; r<brickRowCount; r++){
-                bricks[c][r] = {x:0, y:0};/*brick c r va a tener dos prioridades, se van a convertir en un objeto, yo
+                bricks[c][r] = {x:0, y:0, status: 1};/*brick c r va a tener dos prioridades, se van a convertir en un objeto, yo
                 puedo acceder a estas propiedades siempre y cuando le mande un indice*/
             }
         }
 
         document.addEventListener('keydown', keyDownHandler, false);
         document.addEventListener('keyup', keyUpHandler, false);
+        document.addEventListener("mousemove", mouseMoveHandler, false);
 
+       
         function keyDownHandler(e){
             if(e.keyCode === 39){
                 rightPressed = true;
@@ -91,6 +94,33 @@
             }
         }
 
+                function mouseMoveHandler(e) {
+            var relativeX = e.clientX - canvas.offsetLeft;
+            if(relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddleWidth/2;
+            }
+        }
+         
+        function collisionDetection() { /*vamos a detectar las colisiones*/
+            for(c=0; c<brickColumnCount; c++) {
+                for(r=0; r<brickRowCount; r++) {
+                    var b = bricks[c][r];
+                    if(b.status == 1) { /*si el ladrillo está activo (status 1) comrpobaremos si hay colisión. 
+                    Si hay colisión, pondremos el status de ese ladrillo a 0 para no volver a pintarlo. */
+                        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                            dy = -dy;
+                            b.status = 0;
+                            score++; /*sumar punto cada vez que se rompe un ladrillo*/
+                            if(score == brickRowCount*brickColumnCount) {
+                                alert("Felicidades, ganaste!");
+                                document.location.reload();/*vuelve a cargar la página y el juego empieza de nuevo, 
+                                una vez se hace clic sobre el botón del alert()*/
+                        }
+                        }
+                    }
+                }
+            }
+        }
         function drawBall(){
             ctx.beginPath();
             ctx.arc(x,y,ballRadius,0, Math.PI*2);
@@ -107,25 +137,45 @@
             ctx.closePath;
         }
 
-        function drawBricks(){ /*Aqui dibujamos los bricks*/
+
+
+        function drawBricks(){ /*Aqui dibujamos los bloques*/
             for(c=0; c<brickColumnCount; c++){
                 for(r=0; r<brickRowCount; r++){
+                    if(bricks[c][r].status == 1) {
                     var brickX = (c*(brickWidth + brickPadding)) + brickOffsetLeft;/*de izquierda a derecha*/
                     var brickY = (r*(brickHeight + brickPadding)) + brickOffsetTop;/*de arriba hacia abajo*/
-                    bricks[c][r].x = 0;
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
                     ctx.beginPath (); /*inicia el camino*/
-                    ctx.rect(0,0,brickWidth, brickHeight);
+                    ctx.rect(brickX,brickY,brickWidth, brickHeight);
                     ctx.fillStyle = "#0095DD"; /*rellenamos el triangulito*/
                     ctx.fill();
                     ctx.closePath();
+                    }
                 }
             }
         }
 
+        
+
+       
+
+        function drawScore() { /*funcion para enseñar eñ contador en pantalla*/
+            ctx.font = "16px Arial"; /*fijar el tamaño y fuente*/
+            ctx.fillStyle = "#0095DD";s/*fijamos color */
+            ctx.fillText("Score: "+score, 8, 20); /*para escribir el texto y el lugar en el que se va a dibujar*/
+        } 
+
+
         function draw(){
             ctx.clearRect(0,0,canvas.width, canvas.height);
+            drawBricks();
             drawBall();
             drawPaddle();
+            drawScore();
+            collisionDetection();
+
 
             if(y + dy < ballRadius){
                 console.log("Inside canvas ");
